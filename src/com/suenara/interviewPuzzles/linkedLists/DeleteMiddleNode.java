@@ -29,15 +29,21 @@ public class DeleteMiddleNode {
     }
 
 
-    public static <T>void delete(SingleLinkedNode<T> node) {
-        SingleLinkedNode<T> iter = node;
-        while (iter.next != null) {
-            iter.value = iter.next.value;
-            if (iter.next.next == null) {
-                iter.next = null;
-                break;
-            }
-            iter = iter.next;
+    public static <T> void delete(SingleLinkedNode<T> node) {
+        if (node == null || node.next == null) return;
+        node.value = node.next.value;
+        node.next = node.next.next;
+    }
+
+    public static <T> void delete(DoubleLinkedNode<T> node) {
+        if (node == null) return;
+
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        }
+
+        if (node.prev != null) {
+            node.prev.next = node.next;
         }
     }
 

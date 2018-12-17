@@ -1,5 +1,7 @@
 package com.suenara.interviewPuzzles.linkedLists;
 
+import static com.suenara.interviewPuzzles.linkedLists.SingleLinkedNode.writeNumberAsList;
+
 /**
  * Sum Lists: You have two numbers represented by a linked list, where each node contains a single
  * digit. The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a
@@ -113,20 +115,6 @@ public class SumLists {
             result.next.value = result.next.value % 10;
         }
 
-        return result;
-    }
-
-    private static SingleLinkedNode<Integer> writeNumberAsList(String number) {
-        SingleLinkedNode<Integer> result = new SingleLinkedNode<>();
-
-        SingleLinkedNode<Integer> iter = result;
-        for (int i = 0; i < number.length(); ++i) {
-            iter.value = Character.getNumericValue(number.charAt(i));
-            if (i != number.length() - 1) {
-                iter.next = new SingleLinkedNode<>();
-                iter = iter.next;
-            }
-        }
         return result;
     }
 }
