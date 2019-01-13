@@ -11,15 +11,51 @@ public class Intersection {
     public static <T> SingleLinkedNode<T> isIntersects(SingleLinkedNode<T> a, SingleLinkedNode<T> b) {
         if (a == null || b == null) return null;
 
+
+        int sizeA = 1;
         SingleLinkedNode<T> iterA = a;
         while (iterA != null) {
-            SingleLinkedNode<T> iterB = b;
-            while (iterB != null) {
-                if (iterA == iterB) return iterA;
-                iterB = iterB.next;
-            }
             iterA = iterA.next;
+            sizeA++;
         }
-        return null;
+
+        int sizeB = 1;
+        SingleLinkedNode<T> iterB = b;
+        while (iterB != null) {
+            iterB = iterB.next;
+            sizeB++;
+        }
+
+        if (iterA != iterB) return null;
+
+
+        if (sizeA > sizeB) {
+            iterA = a;
+            iterB = b;
+            int diff = sizeA - sizeB;
+            while (diff > 0) {
+                iterA = iterA.next;
+                diff--;
+            }
+
+        } else if (sizeA < sizeB) {
+            iterB = b;
+            iterA = a;
+            int diff = sizeB - sizeA;
+            while (diff > 0) {
+                iterB = iterB.next;
+                diff--;
+            }
+        } else {
+            iterA = a;
+            iterB = b;
+        }
+
+        while (iterA != iterB) {
+            iterA = iterA.next;
+            iterB = iterB.next;
+        }
+
+        return iterA;
     }
 }

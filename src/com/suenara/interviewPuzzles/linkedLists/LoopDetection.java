@@ -14,14 +14,15 @@ import java.util.HashSet;
  */
 public class LoopDetection {
 
-    public static <T> boolean hasLoop(SingleLinkedNode<T> head) {
+    public static <T> SingleLinkedNode<T> hasLoop(SingleLinkedNode<T> head) {
+        //TODO: not working yet
         HashSet<SingleLinkedNode> set = new HashSet<>();
         while (head != null) {
-            if (set.contains(head)) return true;
+            if (set.contains(head)) return head;
             set.add(head);
             head = head.next;
         }
 
-        return false;
+        return null;
     }
 }
